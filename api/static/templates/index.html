@@ -1,0 +1,88 @@
+<!-- templates/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring App</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Health Monitoring Application</h1>
+        <div id="input-section">
+            <form action="{% url 'response' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="health-query" placeholder="Describe your symptoms...">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health App</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Health App</h1>
+    <a href="{% url 'ask_question' %}">Ask a Health Question</a>
+    <ul>
+        {% for question in questions %}
+        <li>{{ question.question_text }} - {{ question.answer_text }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} <!-- api/templates/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring App</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Health Monitoring App</h1>
+        <p>Ask your health-related question below:</p>
+        <form id="questionForm" method="post" action="{% url 'analyze_question_api' %}">
+            {% csrf_token %}
+            <input type="text" name="question" placeholder="Type your question..." required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="answerContainer">
+            {% if answer %}
+                <p><strong>Answer:</strong> {{ answer }}</p>
+            {% endif %}
+            {% if error %}
+                <p><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
